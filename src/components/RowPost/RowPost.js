@@ -19,8 +19,8 @@ function RowPost(props) {
 
     //Youtube Player Size
     const opts = {
-        height: '390',
-        width: '100%',
+        width:"100%",
+        height: 350,
         playerVars: {
             autoplay: 1,
         },
@@ -32,20 +32,20 @@ function RowPost(props) {
             if (res.data.results.length !== 0) {
                 setId(res.data.results[0])
             } else {
-                console.log("No data");
+                console.log("No Data");
             }
         })
     };
-
     return (
         <div className='row'>
             <h2>{props.title}</h2>
             <div className="posters">
                 {movies?.map((obj) =>
-                    <img onClick={() => handleMovie(obj.id)} className={props.isSmall ? 'posterImgSmall' : 'posterImg'} src={`${imageUrl + obj.backdrop_path}`} alt="poster" />
-                )}
+                    <img id='imgTag' onClick={() => handleMovie(obj.id)} className={props.isSmall ? 'posterImgSmall' : 'posterImg'} src={`${imageUrl + obj.backdrop_path}`} />
+                    )}
             </div>
-            {id && < Youtube opts={opts} videoId={id.key} />}
+                {id && < Youtube opts={opts} videoId={id.key} className="youtube" />}
+                
         </div>
     )
 }
